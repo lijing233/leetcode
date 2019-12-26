@@ -44,18 +44,36 @@
  * @param {string} s
  * @return {number}
  */
-var lengthOfLongestSubstring = function(s) {
-    let tempStr = '';
-    let maxNum = 0;
-    for (let i=0; i<s.length; i++) {
-        if (tempStr.indexOf(s[i]) !== -1) {
-            maxNum = tempStr.length > maxNum ? tempStr.length : maxNum;
-            tempStr = s[i];
+
+var lengthOfLongestSubstring = function (s) {
+    var i = 0, res = 0, n = 0;
+    for (var j = 0; j < s.length; j++) {
+        n = s.slice(i, j).indexOf(s[j])
+        if (n == -1) {
+            res = Math.max(res, j + 1 - i);
         } else {
-            tempStr = tempStr + s[i];
+            i += n + 1;
         }
     }
-    return maxNum;
+    return res;
 };
+
+// var lengthOfLongestSubstring = function (s) {
+//     let num = 0, res = 0;
+//     let m = '';
+//     for (n of s) {
+//         if (m.indexOf(n) == -1) {
+//             m += n;
+//             num++;
+//             res = res < num ? num : res;
+//         } else {
+//             m += n;
+//             m = m.slice(m.indexOf(n) + 1);
+//             num = m.length;
+//         }
+//     }
+//     return res;
+// };
+
 // @lc code=end
 
